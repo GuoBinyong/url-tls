@@ -1,10 +1,10 @@
 {
-  "name": "jsexpand",
+  "name": "com-tools",
   "version": "1.0.0",
   "description": "jsexpand 提供了对 JS 中原生类型功能的扩展（如Object、Array、JSON、String、Number、Math、Date、Promise、URL、URLSearchParams 等等），也提供了一些工具函数；",
-  "main": "dist/jsexpand.js",
+  "main": "dist/com-tools.js",
   "module": "src/index.js",
-  "types": "src/index.d.ts",
+  "types": "types/index.d.ts",
   "sideEffects": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GuoBinyong/jsexpand"
+    "url": "https://github.com/GuoBinyong/com-tools"
   },
   "keywords": [
     "扩展",

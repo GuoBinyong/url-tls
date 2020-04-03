@@ -578,24 +578,15 @@ export function createUniqueIdentifier() {
 }
 
 
-// dom: dom 相关的方法
-/**
- * 加载脚本文件
- * @param scriptProps : src | ScriptPropObj   脚本元素的 src 属性值，或脚本元素的属性配置对象
- * @return {HTMLScriptElement}
- */
-export function loadScript(scriptProps) {
-  if (typeof scriptProps != "object"){
-    scriptProps = {src:scriptProps};
-  }
 
-  var {src,...otherPross} = scriptProps;
-  var scriptEle = document.createElement("script");
-  Object.assign(scriptEle,otherPross);
-  scriptEle.src = src;
-  document.body.appendChild(scriptEle);
-  return scriptEle;
-}
+
+
+
+
+
+
+
+
 
 
 
@@ -603,71 +594,55 @@ export function loadScript(scriptProps) {
 
 
 /**
- * prohibitWindowHeightChangeWhenInput(cancel)
- * 禁止当弹出键盘时 winodw 窗口改变高度
- * @param cancel ?: boolean    可选；默认值：false；表示是否要 取消 之前禁止
+ * createControllablePromise(executor ?:(resolve, reject)=>Void)
+ * 创建外部可控制的改变 Promise 状态 Status 的 Promise 对象；该 Promise 对象在 状态 未完成之前，会有 resolve、reject、clearAdditions 三个方法，当 Promise 的状态完成时，resolve、reject、clearAdditions 这三个方法会自动被删除；其中 clearAdditions 方法是用来 清除 该实例的 resolve、reject、clearAdditions 这三个方法的；
+ *
+ * @param executor ?: (resolve, reject)=>Void    可选；executor是带有 resolve 和 reject 两个参数的函数 。Promise构造函数执行时立即调用executor 函数，
+ * @param statusCompletesImmediately ?: boolean   可选；默认值：true； 该参数表示在 executor 函数中是否会立即（同步）调用 resolve 或 reject ；如果是，则会把 executor 函数变成异步执行，以来避免在执行 clearAdditions 时引用 还未创建的 真实的 promise 实例；
+ * @returns Promise   返回一个带有 resolve、reject 和 clearAdditions  三个方法的 Promise 实例，在该实例的 状态没有改变之前 ，通过 resolve 和 reject 这两个方法，可以改变 Promise 的状态，并且会自动调用 clearAdditions 方法来清除  resolve、reject、clearAdditions 这三个方法； clearAdditions 方法用来清除 resolve、reject 和 clearAdditions  这三个方法的
  */
-export function prohibitWindowHeightChangeWhenInput(cancel) {
-
-  if (cancel){
-
-    var focusinHandler = prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusin_Handler__;
-    if (focusinHandler){
-      document.removeEventListener("focusin",focusinHandler);
-      prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusin_Handler__ = null;
-    }
-
-
-    var focusoutHandler = prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusout_Handler__;
-    if (focusoutHandler){
-      document.removeEventListener("focusin",focusoutHandler);
-      prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusin_Handler__ = null;
-    }
-
-    return;
+export function createControllablePromise(executor,statusCompletesImmediately) {
+  let executorIsvalid = typeof executor == "function";
+  if (executorIsvalid && statusCompletesImmediately == undefined){
+    statusCompletesImmediately = true
   }
 
-  // focusin 事件处理器
-  prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusin_Handler__ = function __prohibitWindowHeightChangeWhenInput_Focusin_Handler__(event) {
-    var htmlDom = document.documentElement;
-    var htmlStyle = htmlDom.style;
-    var bodyDom = document.body;
-    var bodyStyle = bodyDom.style;
 
-    //保存原始样式；
-    prohibitWindowHeightChangeWhenInput.__originalHeightStyle__ = {
-      html:htmlStyle.height,
-      body:bodyStyle.height
-    };
+  var oriFuns = {};
 
-    //设置html和body的高度为窗口变化前的空度
-    var compStyleOfHtml = window.getComputedStyle(htmlDom);
-    htmlStyle.height = compStyleOfHtml.height;
-    var compStyleOfBody = window.getComputedStyle(bodyDom);
-    bodyStyle.height = compStyleOfBody.height;
-  };
+  function clearAdditions() {
+    caPromise.resolve = undefined;
+    caPromise.reject = undefined;
+    caPromise.clearAdditions = undefined;
+  }
 
-  //把事件加到 document 是为加快事件的处理速度
-  //添加 focusin 事件处理器
-  document.addEventListener("focusin",prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusin_Handler__);
+  function resolveFun(value) {
+    clearAdditions();
+    oriFuns.resolve(value);
+  }
+
+  function rejectFun(reason) {
+    clearAdditions();
+    oriFuns.reject(reason);
+  }
 
 
+  var caPromise = new Promise(function (resolve, reject) {
+    oriFuns.resolve = resolve;
+    oriFuns.reject = reject;
+    if (executorIsvalid) {
+      if (statusCompletesImmediately) {
+        setTimeout(executor,0,resolveFun, rejectFun);
+      }else {
+        return executor(resolveFun, rejectFun);
+      }
+    }
+  });
+
+  caPromise.clearAdditions = clearAdditions;
+  caPromise.resolve = resolveFun;
+  caPromise.reject = rejectFun;
 
 
-
-  // focusout 事件处理器
-  prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusout_Handler__ = function __prohibitWindowHeightChangeWhenInput_Focusout_Handler__(event) {
-    //还原html 和 body 的原始高度
-    var oriHeightStyle = prohibitWindowHeightChangeWhenInput.__originalHeightStyle__ || {html: null,body: null} ;
-
-    document.documentElement.style.height = oriHeightStyle.html;
-    document.body.style.height = oriHeightStyle.body;
-
-    prohibitWindowHeightChangeWhenInput.__originalHeightStyle__ = null;
-  };
-
-  //添加 focusout 事件处理器
-  document.addEventListener("focusout",prohibitWindowHeightChangeWhenInput.__prohibitWindowHeightChangeWhenInput_Focusout_Handler__);
-
-
+  return caPromise;
 }
