@@ -188,7 +188,7 @@ export function getTypeStringOf(inst:any):string;
 };
 
 
-export function defineListenableProperty<T extends object>(obj:T,prop:string,options?:ListenablePropOpts<T>):T;
+export function defineListenableProperty<T extends object>(obj:T,prop:string,options?:ListenablePropOpts<T>):any;
 
 
 
@@ -206,7 +206,7 @@ export function defineListenableProperty<T extends object>(obj:T,prop:string,opt
  *
  * @returns obj : Object  被传递给函数的对象。
 */
-export function defineListenableProperties<T extends object>(obj:T,propArray:string[],options?:ListenablePropOpts<T>):T;
+export function defineListenableProperties<T extends object>(obj:T,propArray:string[],options?:ListenablePropOpts<T>):any;
 
 
 
@@ -218,7 +218,7 @@ export function defineListenableProperties<T extends object>(obj:T,propArray:str
  * @returns obj : Object  被传递给函数的对象。
  *
  */
-export function defineListenableProperties<T extends object>(obj:T,propsOptions:{[prop:string]:ListenablePropOpts<T>}):T;
+export function defineListenableProperties<T extends object>(obj:T,propsOptions:{[prop:string]:ListenablePropOpts<T>}):any;
 
 
 
@@ -243,6 +243,8 @@ export function defineListenablePropertyGetter<T extends object>(obj:T, prop:str
  * @returns {string}
  */
 export function createUniqueIdentifier():string;
+
+
 
 
 
