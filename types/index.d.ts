@@ -1,4 +1,4 @@
-export as namespace by;
+export as namespace comTools;
 
 
 
