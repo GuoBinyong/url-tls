@@ -2,7 +2,7 @@
   "name": "com-tools",
   "version": "1.0.0",
   "description": "com-tools 提供了一些通用的工具函数；",
-  "main": "dist/com-tools.js",
+  "main": "dist/comTools.js",
   "module": "src/index.js",
   "types": "types/index.d.ts",
   "sideEffects": true,
@@ -28,6 +28,7 @@
   "license": "ISC",
   "files": [
     "src/*",
+    "types/*",
     "prod/*",
     "dist/*"
   ],
@@ -70,6 +71,7 @@
     "webpack": "^4.42.0",
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.11",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }
