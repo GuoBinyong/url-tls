@@ -22,7 +22,11 @@
     "通用工具",
     "JavaScript工具",
     "浏览器工具",
-    "node工具"
+    "node工具",
+    "JavaScript tools",
+    "node tools",
+    "js tools"
+   
   ],
   "author": "郭斌勇",
   "license": "ISC",
