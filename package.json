@@ -1,6 +1,6 @@
 {
   "name": "com-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "com-tools 提供了一些通用的工具函数；",
   "main": "dist/comTools.js",
   "module": "src/index.js",
@@ -26,7 +26,6 @@
     "JavaScript tools",
     "node tools",
     "js tools"
-   
   ],
   "author": "郭斌勇",
   "license": "ISC",
@@ -77,5 +76,8 @@
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "es-expand": "^1.0.3"
   }
 }

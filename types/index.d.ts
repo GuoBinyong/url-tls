@@ -1,3 +1,5 @@
+import "es-expand"
+
 export as namespace comTools;
 
 

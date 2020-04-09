@@ -92,7 +92,7 @@ export class ByURL {
   }
   set url(newValue){
     this._deleUrlUtilsFor("url");
-    this.urlUtils.url = url;
+    this.urlUtils.url = newValue;
   }
 
 
@@ -111,7 +111,7 @@ export class ByURL {
   }
   set protocol(newValue){
     this._deleUrlUtilsFor("protocol");
-    this.urlUtils.protocol = protocol;
+    this.urlUtils.protocol = newValue;
   }
 
 
@@ -121,7 +121,7 @@ export class ByURL {
   }
   set host(newValue){
     this._deleUrlUtilsFor("host");
-    this.urlUtils.host = host;
+    this.urlUtils.host = newValue;
   }
 
 
@@ -129,9 +129,9 @@ export class ByURL {
   get hostname(){
     return this.urlUtils.hostname;
   }
-  set host(newValue){
+  set hostname(newValue){
     this._deleUrlUtilsFor("hostname");
-    this.urlUtils.hostname = hostname;
+    this.urlUtils.hostname = newValue;
   }
 
 
@@ -139,9 +139,9 @@ export class ByURL {
   get port(){
     return this.urlUtils.port;
   }
-  set host(newValue){
+  set port(newValue){
     this._deleUrlUtilsFor("port");
-    this.urlUtils.port = port;
+    this.urlUtils.port = newValue;
   }
 
 
@@ -150,7 +150,7 @@ export class ByURL {
   }
   set pathname(newValue){
     this._deleUrlUtilsFor("pathname");
-    this.urlUtils.pathname = pathname;
+    this.urlUtils.pathname = newValue;
   }
 
 
@@ -160,7 +160,7 @@ export class ByURL {
   }
   set pathList(newValue){
     this._deleUrlUtilsFor("pathList");
-    this.urlUtils.pathList = pathList;
+    this.urlUtils.pathList = newValue;
   }
 
 
@@ -175,7 +175,7 @@ export class ByURL {
   }
   set search(newValue){
     this._deleUrlUtilsFor("search");
-    this.urlUtils.search = search;
+    this.urlUtils.search = newValue;
   }
 
 
@@ -185,7 +185,7 @@ export class ByURL {
   }
   set searchParams(newValue){
     this._deleUrlUtilsFor("searchParams");
-    this.urlUtils.searchParams = searchParams;
+    this.urlUtils.searchParams = newValue;
   }
 
 
@@ -195,7 +195,7 @@ export class ByURL {
   }
   set hash(newValue){
     this._deleUrlUtilsFor("hash");
-    this.urlUtils.hash = hash;
+    this.urlUtils.hash = newValue;
   }
 
 
@@ -205,7 +205,7 @@ export class ByURL {
   }
   set hashSearch(newValue){
     this._deleUrlUtilsFor("hashSearch");
-    this.urlUtils.hashSearch = hashSearch;
+    this.urlUtils.hashSearch = newValue;
   }
 
 
@@ -215,7 +215,7 @@ export class ByURL {
   }
   set hashParams(newValue){
     this._deleUrlUtilsFor("hashParams");
-    this.urlUtils.hashParams = hashParams;
+    this.urlUtils.hashParams = newValue;
   }
 
 
@@ -224,7 +224,7 @@ export class ByURL {
   }
   set hashUrlUtils(newValue){
     this._deleUrlUtilsFor("hashUrlUtils");
-    this.urlUtils.hashUrlUtils = hashUrlUtils;
+    this.urlUtils.hashUrlUtils = newValue;
   }
 
 
@@ -409,7 +409,8 @@ function _paramsPropJSONStringify(value,key,params) {
  *
  */
 export function parseUrl(urlStr,paramsPropParse,paramsPropStringify){
-  var protocolRegExp = /^\w+(?=:\/\/)/;
+  var protocolRegExp;
+  protocolRegExp = /^\w+(?=:\/\/)/;
   var hostRegExp = /([^./:\s]+(?:\.[^./:\s]+)+)(?::(\d+))?|([^./:\s]+)(?::(\d+))/;
 
   if (!paramsPropParse){
@@ -431,7 +432,7 @@ export function parseUrl(urlStr,paramsPropParse,paramsPropStringify){
     var protoList = url.split("://");
     if (protoList.length > 1){
       var protocol = protoList[0];
-      var hostUrl = protoList[1];
+      hostUrl = protoList[1];
     }
   }
 
@@ -715,7 +716,7 @@ export function stringifyUrl(urlUtils,paramsPropStringify,paramsPropParse){
   var addSearchParams = urlUtils.addSearchParams;
   var addSearch = urlUtils.addSearch;
   if (!addSearchParams && addSearch){
-    addSearchParams = parseQueryString(addSearch,paramsPropParse);;
+    addSearchParams = parseQueryString(addSearch,paramsPropParse);
   }
 
   if (searchParams && addSearchParams){
@@ -764,7 +765,7 @@ export function stringifyUrl(urlUtils,paramsPropStringify,paramsPropParse){
   var addHashParams = urlUtils.addHashParams;
   var addHashSearch = urlUtils.addHashSearch;
   if (!addHashParams && addHashSearch){
-    addHashParams = parseQueryString(addHashSearch,paramsPropParse);;
+    addHashParams = parseQueryString(addHashSearch,paramsPropParse);
   }
 
   if (hashParams && addHashParams){
@@ -913,7 +914,7 @@ export function parseJSONQueryStrObjProperty(queryObj) {
     return total;
   }, {});
 
-};
+}
 
 
 
@@ -975,7 +976,7 @@ export function queryStringify(params,queryPrefix,paramsPropStringify) {
 
   return queryString;
 
-};
+}
 
 
 /**
@@ -1071,7 +1072,7 @@ export function similarQueryStringify(params,separOpts) {
   var queryString = paramList.join(propSeparator);
 
   return queryString;
-};
+}
 
 
 

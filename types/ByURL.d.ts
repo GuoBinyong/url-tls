@@ -12,7 +12,7 @@ export class ByURL implements UrlUtils {
    * paramsPropParse  : (value,key,queryString)=> value    可选；用于在解析 URL 时 url 的参数的值 进行转换；未指定该参数时,默认的逻辑是：如果属性值是 JSON 字符中串，则将其转为对象，否则，原样输出；
    */
   paramsPropParse?:ParamsPropParse;
-  
+
 
 
   /**
@@ -170,7 +170,7 @@ export type ParamsPropStringify = (value:any,key:KeyType,params:object)=> string
 
 
 
-/* 
+/*
 返回的对象 UrlUtils 对象包含以下属性
 */
 
@@ -512,7 +512,6 @@ declare global {
 
   //URL相关：开始
 
-  // // fixme:从 Object.js 来
 
   /**
    * toJSONqueryStringify(queryPrefix)

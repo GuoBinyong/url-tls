@@ -1,3 +1,5 @@
+import "es-expand"
+
 export * from "./ByURL"
 export * from "./ByURLSearchParams"
 
@@ -134,7 +136,7 @@ export function multipleLoop({loopCall,complete,stepComplete,thisValue,total=Num
 
 
   return stopLoop;
-};
+}
 
 
 let arrayPropertyDescriptors = {
@@ -235,7 +237,7 @@ export function safelyIterate(iterable,operation, thisValue) {
 
   return filterItem;
 
-};
+}
 
 
 
@@ -307,7 +309,7 @@ export function getTypeStringOf(inst) {
 
   return typeStr;
 
-};
+}
 
 
 
