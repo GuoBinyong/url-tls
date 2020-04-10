@@ -170,14 +170,18 @@ export type ParamsPropStringify = (value:any,key:KeyType,params:object)=> string
 
 
 
-/*
-返回的对象 UrlUtils 对象包含以下属性
-*/
 
-/**
- * 表示Url各种组成单元的接口
- */
-interface UrlUtils {
+declare global {
+
+
+  /*
+  返回的对象 UrlUtils 对象包含以下属性
+  */
+
+  /**
+   * 表示Url各种组成单元的接口
+   */
+  interface UrlUtils {
     href?: string;    //包含完整 URL 的 DOMString。
     url?: string;   //不包含search和hase 的url
     origin?: string;  //返回一个包含协议名、域名和端口号的 DOMString。
@@ -195,8 +199,23 @@ interface UrlUtils {
     hashParams?: object;   //哈唏hash中的参数
     hashUrlUtils?: UrlUtils;  //把哈唏字符串 hash 作为 url 解析成的 urlUtils
     params?: object;    //url中所有的参数，包括 searchParams 和 hashParams
-}
+  }
 
+
+
+
+
+  interface UrlUtilsAdd extends UrlUtils {
+    addSearch?: string;   //另外追加的 search 字符串，该属性优先级低于addSearchParams
+    addSearchParams?: object;  // 另外追加的 search 对象，该属性优先级高于 addSearch
+    addHashSearch?: string;   //另外追加的 hashSearch 字符串，该属性优先级低于 addHashParams
+    addHashParams?: object;  // 另外追加的 hashSearch 对象，该属性优先级高于 addHashSearch
+  }
+
+
+
+
+}
 
 
 
@@ -236,15 +255,6 @@ export function parseUrl(urlStr:string,paramsPropParse?:ParamsPropParse,paramsPr
 
 
 
-
-
-
-interface UrlUtilsAdd extends UrlUtils {
-    addSearch?: string;   //另外追加的 search 字符串，该属性优先级低于addSearchParams
-    addSearchParams?: object;  // 另外追加的 search 对象，该属性优先级高于 addSearch
-    addHashSearch?: string;   //另外追加的 hashSearch 字符串，该属性优先级低于 addHashParams
-    addHashParams?: object;  // 另外追加的 hashSearch 对象，该属性优先级高于 addHashSearch
-}
 
 
 
