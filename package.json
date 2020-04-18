@@ -1,8 +1,8 @@
 {
   "name": "com-tools",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "com-tools 提供了一些通用的工具函数；",
-  "main": "dist/com-tools.umd.js",
+  "main": "dist/com-tools.commonjs2.js",
   "module": "src/index",
   "types": "types/index.d.ts",
   "sideEffects": true,
