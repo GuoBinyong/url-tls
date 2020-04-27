@@ -35,7 +35,7 @@ export class ByURLSearchParams {
 
 
 
-    params:object;
+    params:any;
 
 
     search:string;

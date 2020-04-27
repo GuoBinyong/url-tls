@@ -26,7 +26,7 @@ export class ByURL implements UrlUtils {
 
   initUrl:UrlUtils | string;
   href:string;
-  readonly params?:object;
+  readonly params?:any;
 
 
 
@@ -54,7 +54,7 @@ export class ByURL implements UrlUtils {
    * @param value : any    添加的值
    * @returns addSearchParams : Object    返回添加后的查询参数对象
    */
-  addSearchParams(key:string,value:any):object;
+  addSearchParams(key:string,value:any):any;
 
 
   /**
@@ -65,7 +65,7 @@ export class ByURL implements UrlUtils {
    * @param params : Object   添加的params对象
    * @returns addSearchParams : Object    返回添加后的查询参数对象
    */
-  addSearchParams(params:object):object;
+  addSearchParams(params:object):any;
 
    /**
    *
@@ -74,7 +74,7 @@ export class ByURL implements UrlUtils {
    * 获取添加的查询参数
    * @returns addSearchParams : Object    返回添加后的查询参数对象
    */
-  addSearchParams():object;
+  addSearchParams():any;
 
 
 
@@ -93,7 +93,7 @@ export class ByURL implements UrlUtils {
    * @param value : any    添加的值
    * @returns addSearchParams : Object    返回添加后的查询参数对象
    */
-  addHashParams(key:string,value:any):object;
+  addHashParams(key:string,value:any):any;
 
   /**
    *
@@ -103,7 +103,7 @@ export class ByURL implements UrlUtils {
    * @param params : Object   添加的params对象
    * @returns addSearchParams : Object    返回添加后的查询参数对象
    */
-  addHashParams(params:object):object;
+  addHashParams(params:object):any;
 
    /**
    *
@@ -112,7 +112,7 @@ export class ByURL implements UrlUtils {
    * 获取添加的hash查询参数
    * @returns addSearchParams : Object    返回添加后的hash查询参数对象
    */
-  addHashParams():object;
+  addHashParams():any;
 
 }
 
@@ -193,12 +193,12 @@ declare global {
     pathList?: string[];  //url的路径名列表
     absPath?: boolean; //pathname 是否是经对路径
     search?: string;    //以 '?' 起头紧跟着 URL 请求参数的 DOMString。
-    searchParams?: object;  //查询参数search的对象形式
+    searchParams?: any;  //查询参数search的对象形式
     hash?: string; //以 '#' 起头紧跟着 URL 锚点标记的 DOMString。
     hashSearch?: string; // 哈唏hash中的查询字符串
-    hashParams?: object;   //哈唏hash中的参数
+    hashParams?: any;   //哈唏hash中的参数
     hashUrlUtils?: UrlUtils;  //把哈唏字符串 hash 作为 url 解析成的 urlUtils
-    params?: object;    //url中所有的参数，包括 searchParams 和 hashParams
+    params?: any;    //url中所有的参数，包括 searchParams 和 hashParams
   }
 
 
@@ -207,9 +207,9 @@ declare global {
 
   interface UrlUtilsAdd extends UrlUtils {
     addSearch?: string;   //另外追加的 search 字符串，该属性优先级低于addSearchParams
-    addSearchParams?: object;  // 另外追加的 search 对象，该属性优先级高于 addSearch
+    addSearchParams?: any;  // 另外追加的 search 对象，该属性优先级高于 addSearch
     addHashSearch?: string;   //另外追加的 hashSearch 字符串，该属性优先级低于 addHashParams
-    addHashParams?: object;  // 另外追加的 hashSearch 对象，该属性优先级高于 addHashSearch
+    addHashParams?: any;  // 另外追加的 hashSearch 对象，该属性优先级高于 addHashSearch
   }
 
 
@@ -375,7 +375,7 @@ export function parseJSONQueryString(queryString:string):object;
  * @returns 解析后的对象
  *
  */
-export function parseJSONQueryStrObjProperty(queryObj:object):object;
+export function parseJSONQueryStrObjProperty(queryObj:object):any;
 
 
 
@@ -422,9 +422,9 @@ export function queryStringify(params:object,paramsPropStringify:ParamsPropStrin
  * parseQueryString(queryString,paramsPropParse)
  * @param queryString : string    被解析的查询字符串；
  * @param paramsPropParse ? : (value,key,queryString)=> value    可选；对 value 进行转换
- * @returns Object   解析后的对象
+ * @returns any   解析后的对象
  */
-export  function parseQueryString(queryString:string,paramsPropParse?:ParamsPropParse):object;
+export  function parseQueryString(queryString:string,paramsPropParse?:ParamsPropParse):any;
 
 
 
@@ -482,7 +482,7 @@ export function parseSimilarQueryString(queryString:string,separOpts?:{
     prop?:string,
     kv?:string,
     map?:ParamsPropParse
-}):object;
+}):any;
 
 
 
@@ -547,7 +547,7 @@ declare global {
    * 说明：
    * 本方法是通过 parseJSONQueryString 方法进行解析的；
    */
-  readonly urlJSONQueryObj:object;
+  readonly urlJSONQueryObj:any;
 
     }
 
