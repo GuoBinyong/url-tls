@@ -155,6 +155,8 @@ let arrayPropertyDescriptors = {
    * @returns stopLoop : (stopInfo)=>Void    停止循环的函数；调用该函数，会终止正在进行的循环； 入参 stopInfo : any 停止循环的相关信息
    */
   multipleLoop: {
+    configurable:true,
+    writable:true,
     enumerable: false,
     value: function ({loopCall,complete,stepComplete,thisValue,step,delay}) {
 

@@ -1183,6 +1183,8 @@ let objectPropertyDescriptors = {
    * 本方法是通过 JSONQueryStringify 方法进行格式化的
    */
   toJSONqueryStringify: {
+    configurable:true,
+    writable:true,
     enumerable: false,
     value: function (queryPrefix) {
       return JSONQueryStringify(this,queryPrefix);
@@ -1216,6 +1218,7 @@ let stringPropertyDescriptors = {
    * 本方法是通过 parseJSONQueryString 方法进行解析的；
    */
   urlJSONQueryObj:{
+    configurable:true,
     get:function () {
      return parseJSONQueryString(this);
     }
