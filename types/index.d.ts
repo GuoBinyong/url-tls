@@ -200,10 +200,22 @@ export function defineListenableProperty<T extends object>(obj:T,prop:string,opt
 
 
 
+/**
+ * 接口1：defineListenableProperties(obj,propsOptions)
+ * @param obj : Object   必选；要在其上定义属性的对象。
+ * @param propsOptions : {propName:options}   必选；要定义的属性的配置对象；以该配置对象的属性属性为 要配置的属性的名字，以其值为 本配置的属性的 配置选项
+ * @returns obj : Object  被传递给函数的对象。
+ *
+ */
+export function defineListenableProperties<T extends object>(obj:T,propsOptions:{[prop:string]:ListenablePropOpts<T>}):any;
+
+
+
+
 
 /*
  * 批量定义可监听的属性
- * 接口1：defineListenableProperties(obj,propArray,options)
+ * 接口2：defineListenableProperties(obj,propArray,options)
  * @param obj : Object   必选；要在其上定义属性的对象。
  * @param propArray : [string]   必选；要在其上定义的属性的名字列表。
  * @param options ?: {ready ?:string,noEvent ?:boolean,event ?:string,newValueKey ?:string,oldValueKey ?:string,getDefault ?:(thisValue)=>PropValue}     可选；配置选项；各个选项的说明如下；
@@ -212,17 +224,6 @@ export function defineListenableProperty<T extends object>(obj:T,prop:string,opt
 */
 export function defineListenableProperties<T extends object>(obj:T,propArray:string[],options?:ListenablePropOpts<T>):any;
 
-
-
-
-/**
- * 接口2：defineListenableProperties(obj,propsOptions)
- * @param obj : Object   必选；要在其上定义属性的对象。
- * @param propsOptions : {propName:options}   必选；要定义的属性的配置对象；以该配置对象的属性属性为 要配置的属性的名字，以其值为 本配置的属性的 配置选项
- * @returns obj : Object  被传递给函数的对象。
- *
- */
-export function defineListenableProperties<T extends object>(obj:T,propsOptions:{[prop:string]:ListenablePropOpts<T>}):any;
 
 
 
