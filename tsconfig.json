@@ -10,7 +10,8 @@
     ],
     "strict": true,
     "declaration":true,
-    "esModuleInterop": false
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "exclude":[
     "dist",

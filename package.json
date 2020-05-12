@@ -1,10 +1,9 @@
 {
   "name": "com-tools",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "com-tools 提供了一些通用的工具函数；",
   "main": "dist/com-tools.cjs.js",
   "module": "dist/com-tools.esm.js",
-  "browser": "dist/com-tools.umd.js",
   "types": "types/index.d.ts",
   "sideEffects": true,
   "repository": {
@@ -52,6 +51,6 @@
     "rollup-plugin-babel": "^4.2.0"
   },
   "dependencies": {
-    "es-expand": "^1.0.11"
+    "es-expand": "^1.0.12"
   }
 }
