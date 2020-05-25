@@ -1,4 +1,4 @@
-import {ParamsPropParse} from "../../com-tools/types/ByURL"
+import {ParamsPropParse} from "./ByURL"
 
 
 
