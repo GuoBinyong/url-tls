@@ -1,7 +1,3 @@
-import {getTypeOf,getTypeStringOf} from "./oriTools"
-
-
-
 /**
  * 判断目标是否是对象类型
  * @param target : any   目标对象
@@ -11,26 +7,11 @@ import {getTypeOf,getTypeStringOf} from "./oriTools"
  *
  * typeof null 也返回 "object"
  */
-export function isObject(target:any):boolean {
-    // return target instanceof Object || typeof target === "object"
-    var tarType = typeof target;
-    return  target && (tarType === "object" || tarType === "function");
-}
-
-
-
-
-
-
-
-
-
+export declare function isObject(target: any): boolean;
 /**
  * typeof 的返回类型
  */
-export type TypeOfReturnType = "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
-
-
+export declare type TypeOfReturnType = "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
 /**
  * 精确类型
  *
@@ -50,26 +31,13 @@ export type TypeOfReturnType = "string" | "number" | "bigint" | "boolean" | "sym
  * function : Function
  * 其它任何类型的实例  : 返回该实例的构造函数
  */
-export type ExactType = Exclude<TypeOfReturnType, "undefined" | "object" | "function"> | undefined | null | Function ;
-
-
+export declare type ExactType = Exclude<TypeOfReturnType, "undefined" | "object" | "function"> | undefined | null | Function;
 /**
  * 获取 inst 的精确类型
  * @param inst : any
  * @returns ExactType    inst 的类型
  */
-export function getExactTypeOf(inst:any):ExactType  {
-    if (inst == null || isObject(inst)){
-        return getTypeOf(inst);
-    }
-    return (typeof inst) as ExactType;
-}
-
-
-
-
-
-
+export declare function getExactTypeOf(inst: any): ExactType;
 /**
  * 精确类型
  *
@@ -89,19 +57,10 @@ export function getExactTypeOf(inst:any):ExactType  {
  * symbol : "symbol"
  * 其它任何类型的实例  : 返回该实例的构造函数的名字
  */
-export type ExactTypeString = Exclude<TypeOfReturnType, "object"> | "null" | string ;
-
-
-
+export declare type ExactTypeString = Exclude<TypeOfReturnType, "object"> | "null" | string;
 /**
  * 获取 inst 的精确类型的字符串表示
  * @param inst : any
  * @returns ExactTypeString    inst 的类型字符串
  */
-export function getExactTypeStringOf(inst:any):ExactTypeString {
-    var typeStr = typeof inst;
-    if (typeStr === "object"){
-        return getTypeStringOf(inst);
-    }
-    return typeStr;
-}
+export declare function getExactTypeStringOf(inst: any): ExactTypeString;
