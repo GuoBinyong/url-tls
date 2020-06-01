@@ -259,6 +259,7 @@ export function safelyIterate(iterable,operation, thisValue) {
  * 本方法返回的结果如下：
  * undefined ：undefined
  * null ： null
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
  * 其它任何类型的实例  : 返回该实例的构造函数  或 包装对象的构造函数
  *
  */
@@ -266,6 +267,9 @@ export function getTypeOf(inst) {
   var typeInfo = inst;
   if (inst != null){
     typeInfo = inst.constructor;
+    if (typeInfo == undefined){
+      typeInfo = typeof inst;
+    }
   }
 
   return typeInfo;
@@ -287,28 +291,37 @@ export function getTypeOf(inst) {
  * 本方法返回的结果如下：
  * undefined ："undefined"
  * null ： "null"
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
  * 其它任何类型的实例  : 返回该实例的构造函数  或 包装对象的构造函数 的函数名字
  *
  */
 export function getTypeStringOf(inst) {
 
+  let t = getTypeOf(inst);
+
+
   switch (inst){
     case undefined:{
-      var typeStr = "undefined";
-      break;
+      return  "undefined";
     }
 
     case null:{
-      typeStr = "null";
-      break;
-    }
-
-    default:{
-      typeStr = inst.constructor.name;
+      return  "null";
     }
   }
 
-  return typeStr;
+  let tType = typeof t;
+  switch (tType) {
+    case "function":{
+      return t.name;
+    }
+    case "string":{
+      return  t;
+    }
+    default:{
+      return  tType;
+    }
+  }
 
 }
 

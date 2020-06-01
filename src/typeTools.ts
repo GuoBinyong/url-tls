@@ -48,9 +48,10 @@ export type TypeOfReturnType = "string" | "number" | "bigint" | "boolean" | "sym
  * boolean : "boolean"
  * symbol : "symbol"
  * function : Function
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
  * 其它任何类型的实例  : 返回该实例的构造函数
  */
-export type ExactType = Exclude<TypeOfReturnType, "undefined" | "object" | "function"> | undefined | null | Function ;
+export type ExactType = Exclude<TypeOfReturnType, "undefined" | "function"> | undefined | null | Function ;
 
 
 /**
@@ -87,9 +88,10 @@ export function getExactTypeOf(inst:any):ExactType  {
  * bigint : "bigint"
  * boolean : "boolean"
  * symbol : "symbol"
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
  * 其它任何类型的实例  : 返回该实例的构造函数的名字
  */
-export type ExactTypeString = Exclude<TypeOfReturnType, "object"> | "null" | string ;
+export type ExactTypeString = TypeOfReturnType | "null" | string ;
 
 
 
