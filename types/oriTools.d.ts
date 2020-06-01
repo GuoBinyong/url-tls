@@ -111,56 +111,6 @@ export function safelyIterate<T,ThisValue>(iterable:Iterable<T>,operation:(this:
 
 
 
-
-
-
-//类型：开始
-
-
-/**
- * 获取 inst 的类型
- * @param inst : any
- * @returns Type    inst 的类型
- *
- *
- *
- * 注意：
- * 本方法返回的结果如下：
- * undefined ：undefined
- * null ： null
- * 其它任何类型的实例  : 返回该实例的构造函数  或 包装对象的构造函数
- *
- */
-export function getTypeOf<T>(inst:T):T;
-
-
-
-
-
-
-
-/**
- * 获取 inst 的类型字符串
- * @param inst : any
- * @returns string    inst 的类型字符串
- *
- *
- *
- * 注意：
- * 本方法返回的结果如下：
- * undefined ："undefined"
- * null ： "null"
- * 其它任何类型的实例  : 返回该实例的构造函数  或 包装对象的构造函数 的函数名字
- *
- */
-export function getTypeStringOf(inst:any):string;
-
-
-
-//类型：结束
-
-
-
 /**
  * 定义可监听的属性
  *
