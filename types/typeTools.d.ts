@@ -13,6 +13,14 @@ export declare function isObject(target: any): boolean;
  */
 export declare type TypeOfReturnType = "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
 /**
+ * 宽松的类型
+ */
+export declare type LooseType = undefined | null | Function | "object";
+/**
+ * 宽松类型的字符串表示
+ */
+export declare type LooseTypeString = "undefined" | "null" | "Function" | "object" | string;
+/**
  * 精确类型
  *
  * 在精准类型中认为 JavaScript 的原始类型（非对象类型） 与 其对应的 包装类型（类类型）是不同的类型，即：
@@ -29,17 +37,12 @@ export declare type TypeOfReturnType = "string" | "number" | "bigint" | "boolean
  * boolean : "boolean"
  * symbol : "symbol"
  * function : Function
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
  * 其它任何类型的实例  : 返回该实例的构造函数
  */
-export declare type ExactType = Exclude<TypeOfReturnType, "undefined" | "object" | "function"> | undefined | null | Function;
+export declare type ExactType = LooseType | Exclude<TypeOfReturnType, "undefined" | "function" | "object">;
 /**
- * 获取 inst 的精确类型
- * @param inst : any
- * @returns ExactType    inst 的类型
- */
-export declare function getExactTypeOf(inst: any): ExactType;
-/**
- * 精确类型
+ * 精确类型的字符串表示
  *
  * 在精准类型中认为 JavaScript 的原始类型（非对象类型） 与 其对应的 包装类型（类类型）是不同的类型，即：
  * number 和  Number、string 和 String、boolean 和 Boolean 等 是不同的类型；
@@ -49,15 +52,61 @@ export declare function getExactTypeOf(inst: any): ExactType;
  * 各种类型的值 与 该方法的返回值 的映射如下：
  * undefined ："undefined"
  * null : "null"
- * function : "function"
+ * function : "Function"
  * string : "string"
  * number : "number"
  * bigint : "bigint"
  * boolean : "boolean"
  * symbol : "symbol"
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
  * 其它任何类型的实例  : 返回该实例的构造函数的名字
  */
-export declare type ExactTypeString = Exclude<TypeOfReturnType, "object"> | "null" | string;
+export declare type ExactTypeString = LooseTypeString | Exclude<TypeOfReturnType, "undefined" | "function" | "object">;
+/**
+ * 获取 inst 的宽松类型
+ * @param inst : any
+ * @returns LooseType    inst 的类型
+ *
+ *
+ *
+ * 注意：
+ * 本方法返回的结果如下：
+ * undefined ：undefined
+ * null ： null
+ * function : Function
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
+ * 其它任何类型的实例  : 返回该实例的构造函数  或 包装对象的构造函数
+ *
+ */
+export declare function getTypeOf(inst: any): LooseType;
+/**
+ * 获取 类型的字符串表示
+ * @param t
+ * @return ExactTypeString
+ */
+export declare function getStringOfType(t: ExactType): ExactTypeString;
+/**
+ * 获取 inst 的类型字符串
+ * @param inst : any
+ * @returns string    inst 的类型字符串
+ *
+ *
+ *
+ * 注意：
+ * 本方法返回的结果如下：
+ * undefined ："undefined"
+ * null ： "null"
+ * 没有原型的对象(如：通过 Object.create(null) 创建的对象) : "object"
+ * 其它任何类型的实例  : 返回该实例的构造函数  或 包装对象的构造函数 的函数名字
+ *
+ */
+export declare function getTypeStringOf(inst: any): LooseTypeString;
+/**
+ * 获取 inst 的精确类型
+ * @param inst : any
+ * @returns ExactType    inst 的类型
+ */
+export declare function getExactTypeOf(inst: any): ExactType;
 /**
  * 获取 inst 的精确类型的字符串表示
  * @param inst : any
