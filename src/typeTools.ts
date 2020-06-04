@@ -200,3 +200,15 @@ export function getExactTypeStringOf(inst:any):ExactTypeString {
     var t = getExactTypeOf(inst);
     return getStringOfType(t);
 }
+
+
+/**
+ * 判断 data 是否是 基本类型
+ * @param data
+ *
+ * 基本类型 是指 那些不是 对象类型的类型，即，除了 object 和 function  类型以外，其它的都是基本类型，null 也算怎是 基本类型
+ */
+export function isBaseType(data:any):boolean {
+    var typeStr = typeof data;
+    return data == null || (typeStr !== "object" && typeStr !== "function");
+}
