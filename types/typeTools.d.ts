@@ -113,3 +113,10 @@ export declare function getExactTypeOf(inst: any): ExactType;
  * @returns ExactTypeString    inst 的类型字符串
  */
 export declare function getExactTypeStringOf(inst: any): ExactTypeString;
+/**
+ * 判断 data 是否是 基本类型
+ * @param data
+ *
+ * 基本类型 是指 那些不是 对象类型的类型，即，除了 object 和 function  类型以外，其它的都是基本类型，null 也算怎是 基本类型
+ */
+export declare function isBaseType(data: any): boolean;
