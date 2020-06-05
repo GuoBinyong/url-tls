@@ -86,6 +86,11 @@ export declare function getTypeOf(inst: any): LooseType;
  */
 export declare function getStringOfType(t: ExactType): ExactTypeString;
 /**
+ * 根据类型的名字获取类型
+ * @param typeName
+ */
+export declare function getTypeByName(typeName: string): Function | undefined;
+/**
  * 获取 inst 的类型字符串
  * @param inst : any
  * @returns string    inst 的类型字符串

@@ -148,6 +148,14 @@ export function getStringOfType(t:ExactType):ExactTypeString{
 }
 
 
+/**
+ * 根据类型的名字获取类型
+ * @param typeName
+ */
+export function getTypeByName(typeName:string):Function|undefined {
+    return (<any>globalThis)[typeName]
+}
+
 
 
 /**
