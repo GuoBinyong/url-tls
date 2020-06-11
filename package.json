@@ -1,26 +1,29 @@
 {
-  "name": "com-tools",
-  "version": "1.1.1",
-  "description": "com-tools 提供了一些通用的工具函数；",
-  "main": "dist/com-tools.cjs.js",
-  "module": "dist/com-tools.es.js",
+  "name": "url-tls",
+  "version": "1.0.0",
+  "description": "url-tls 提供了URL相关的工具函数；",
+  "main": "dist/url-tls.cjs.js",
+  "module": "dist/url-tls.es.js",
   "types": "types/index.d.ts",
   "sideEffects": false,
-  "homepage": "https://github.com/GuoBinyong/com-tools#readme",
+  "homepage": "https://github.com/GuoBinyong/url-tls#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GuoBinyong/com-tools"
+    "url": "https://github.com/GuoBinyong/url-tls"
   },
   "keywords": [
-    "工具",
-    "JS工具",
-    "通用工具",
-    "JavaScript工具",
-    "浏览器工具",
-    "node工具",
-    "JavaScript tools",
-    "node tools",
-    "js tools"
+    "URL",
+    "URL tools",
+    "parse url",
+    "parse",
+    "stringify url",
+    "stringify",
+    "query string",
+    "URLSearchParams",
+    "Search Params",
+    "URL Search Params",
+    "?",
+    "&"
   ],
   "author": "郭斌勇",
   "license": "ISC",
@@ -64,8 +67,6 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.9.6",
-    "es-expand": "^1.0.16",
-    "json-tls": "^1.0.2",
-    "type-tls": "^2.0.1"
+    "json-tls": "file:../json-tls"
   }
 }

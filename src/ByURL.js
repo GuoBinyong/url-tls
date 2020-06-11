@@ -1,4 +1,7 @@
+import {correctParse} from "json-tls"
+
 //ByURL：开始
+
 
 /**
  * 该类是用于在不支持 URL 类型的环境下替代 URL 的；但该类的提供的功能和接口远丰富于 URL ，但并不完全包含于 URL ，所以，完全替换 URL
@@ -359,7 +362,7 @@ export class ByURL {
  *默认的 paramsPropParse ; 用JSON解析参数的属性
  */
 function _paramsPropJSONParse(value) {
-  return JSON.correctParse(value);
+  return correctParse(value);
 }
 
 
@@ -909,7 +912,7 @@ export function parseJSONQueryStrObjProperty(queryObj) {
   return Object.entries(queryObj).reduce(function (total, kvList) {
     let key = kvList[0];
     let jsonStr = decodeURIComponent(kvList[1]);
-    total[key] = JSON.correctParse(kvList[1]);
+    total[key] = correctParse(kvList[1]);
 
     return total;
   }, {});
