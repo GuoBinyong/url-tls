@@ -370,7 +370,7 @@ function _paramsPropJSONParse(value) {
 /**
  *默认的 paramsPropStringify ；用JSON序列化参数的属性
  */
-function _paramsPropJSONStringify(value,key,params) {
+function _paramsPropJSONStringify(value) {
     if (typeof value == "object"){
       value = JSON.stringify(value);
     }
@@ -412,8 +412,7 @@ function _paramsPropJSONStringify(value,key,params) {
  *
  */
 export function parseUrl(urlStr,paramsPropParse,paramsPropStringify){
-  var protocolRegExp;
-  protocolRegExp = /^\w+(?=:\/\/)/;
+  // var protocolRegExp = /^\w+(?=:\/\/)/;
   var hostRegExp = /([^./:\s]+(?:\.[^./:\s]+)+)(?::(\d+))?|([^./:\s]+)(?::(\d+))/;
 
   if (!paramsPropParse){
@@ -911,7 +910,7 @@ export function parseJSONQueryString(queryString) {
 export function parseJSONQueryStrObjProperty(queryObj) {
   return Object.entries(queryObj).reduce(function (total, kvList) {
     let key = kvList[0];
-    let jsonStr = decodeURIComponent(kvList[1]);
+    // let jsonStr = decodeURIComponent(kvList[1]);
     total[key] = correctParse(kvList[1]);
 
     return total;
@@ -960,7 +959,7 @@ export function queryStringify(params,queryPrefix,paramsPropStringify) {
   }
 
 
-  var paramList = Object.entries(params).map(function (kvArr, index, array) {
+  var paramList = Object.entries(params).map(function (kvArr) {
     var key = kvArr[0];
     var keyStr = encodeURIComponent(key);
 
@@ -1063,7 +1062,7 @@ export function similarQueryStringify(params,separOpts) {
   }
 
 
-  var paramList = Object.entries(params).map(function (kvArr, index, array) {
+  var paramList = Object.entries(params).map(function (kvArr) {
     var key = kvArr[0];
 
     var value = kvArr[1];

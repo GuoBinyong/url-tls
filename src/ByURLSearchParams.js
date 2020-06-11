@@ -97,6 +97,7 @@ export class ByURLSearchParams {
   }
 
   has(name){
+    // eslint-disable-next-line no-prototype-builtins
     return this.params.hasOwnProperty(name);
   }
 
