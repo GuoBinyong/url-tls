@@ -1,6 +1,6 @@
 {
   "name": "url-tls",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "url-tls 提供了URL相关的工具函数；",
   "main": "dist/url-tls.cjs.js",
   "module": "dist/url-tls.es.js",
